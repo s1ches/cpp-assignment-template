@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/hw01_test.dir/hw01_test.cpp.o -o hw01_test  ../../lib/libgtest.a ../src/libhw01.a 
