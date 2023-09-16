@@ -1,0 +1,2 @@
+/usr/bin/ar qc libhw01.a CMakeFiles/hw01.dir/hw01.cpp.o
+/usr/bin/ranlib libhw01.a
