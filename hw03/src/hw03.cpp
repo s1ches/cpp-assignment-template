@@ -7,17 +7,18 @@ void hw03(char* str, const char* pattern)
     exit(1);
   }
 
-  int32_t size_str=std::strlen(str); 
-
   int32_t start_index;
+  int32_t size_pattern = std::strlen(pattern);
+  int32_t size_str = std::strlen(str);
 
-  if(std::strlen(str)==0 || std::strlen(pattern)==0 || std::strlen(pattern) > std::strlen(str) || (start_index = _get_start_index(str, pattern))==-1)
+
+  if(size_str == 0 || size_pattern==0 || size_pattern > size_str || (start_index = _get_start_index(str, pattern))==-1)
     return;
 
-  int32_t break_point = (std::strlen(str) - std::strlen(pattern)-start_index);
+  int32_t break_point = (size_str - size_pattern-start_index);
   for(char* str_let = str+start_index; (str_let - (str+start_index)) <= break_point; str_let++){
-    *str_let = *(str_let+std::strlen(pattern));
-    *(str_let+std::strlen(pattern))='\0';
+    *str_let = *(str_let+size_pattern);
+    *(str_let+size_pattern)='\0';
   }
 }
 
@@ -27,9 +28,12 @@ int _get_start_index(char* str, const char* pattern){
   int64_t pattern_hash{0};
   size_t max_power{1};
 
+  int32_t size_pattern = std::strlen(pattern);
+  int32_t size_str = std::strlen(str);
+
   int32_t j = 0;
 
-  for(char* str_let = str; str_let-str < std::strlen(pattern);str_let++, j++){
+  for(char* str_let = str; str_let-str < size_pattern;str_let++, j++){
     str_hash = str_hash*prime_number+(*str_let);
     pattern_hash = pattern_hash*prime_number+(*(pattern+j)); 
     max_power*=prime_number;
@@ -42,8 +46,8 @@ int _get_start_index(char* str, const char* pattern){
   }
 
   int32_t i=1;
-  for(char* str_let=str;str_let-str < std::strlen(str) - std::strlen(pattern);str_let++, i++){
-    str_hash = (str_hash - max_power*(*str_let))*prime_number+(*(std::strlen(pattern)+str_let));
+  for(char* str_let=str;str_let-str < size_str - size_pattern;str_let++, i++){
+    str_hash = (str_hash - max_power*(*str_let))*prime_number+(*(size_pattern+str_let));
     if(str_hash == pattern_hash && _is_equals(str, pattern, i))
       return i;
   }
@@ -53,8 +57,9 @@ int _get_start_index(char* str, const char* pattern){
 
 bool _is_equals(char* str, const char* pattern, int32_t i){
   int32_t j = 0;
-
-  for(char* str_let = str+i; str_let-str+i < std::strlen(pattern);str_let++, j++)
+  int32_t size_pattern = std::strlen(pattern);
+  
+  for(char* str_let = str+i; str_let-str+i < size_pattern;str_let++, j++)
     if(*str_let != *(pattern+j))
       return false;
   
