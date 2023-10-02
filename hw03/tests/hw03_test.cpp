@@ -81,6 +81,24 @@ TEST(Hw03Tests, Test10)
     EXPECT_EQ(std::string(expected), std::string(input));
 }
 
+TEST(Hw03Tests, NullRefExceptionTest1)
+{
+    try {
+        hw03(nullptr, nullptr);
+    }
+    catch(const std::runtime_error& exc) {
+        EXPECT_EQ(exc.what(), std::string("Null Reference Exception"));
+    }
+    catch(...) {
+        FAIL() << "Expected std::runtime_error";
+    }
+}
+
+TEST(Hw03Tests, NullRefExceptionTest2)
+{
+    EXPECT_THROW(hw03(nullptr, nullptr), std::runtime_error);
+}
+
 int main(int argc, char** argv)
 {
     ::testing::InitGoogleTest(&argc, argv);

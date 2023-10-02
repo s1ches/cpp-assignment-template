@@ -2,7 +2,7 @@
 
 void hw03(char* str, const char* pattern) {
   if (str == nullptr || pattern == nullptr)
-    throw "Null Reference Exception";
+    throw std::runtime_error{"Null Reference Exception"};
 
   int64_t start_index;
   size_t size_pattern = std::strlen(pattern);
