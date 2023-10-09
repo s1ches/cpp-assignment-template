@@ -12,8 +12,8 @@ std::size_t hw04(const int* input_array, std::size_t elem_count)
     std::size_t* out_data = new std::size_t[out_data_size]{0};
     
     if(out_data == nullptr){
-        throw std::runtime_error{"Memory was not allocated"};
         delete[] input_array;
+        throw std::runtime_error{"Memory was not allocated"};
     }
 
     for(std::size_t i = 0;i < elem_count && input_array[i] >= 0; i++) {
@@ -23,8 +23,8 @@ std::size_t hw04(const int* input_array, std::size_t elem_count)
             out_data = realloc(out_data, ++out_data_size);
         
         if(out_data == nullptr){
-            throw std::runtime_error{"Memory was not allocated"};
             delete[] input_array;
+            throw std::runtime_error{"Memory was not allocated"};
         }
     }
 
