@@ -40,11 +40,15 @@ std::size_t hw04(const int* input_array, std::size_t elem_count)
 std::size_t* realloc(std::size_t* input_array, const std::size_t elem_count){
     std::size_t* out_array = new std::size_t[elem_count];
 
-    if(out_array == nullptr)
-        throw std::runtime_error{"Memory was not allocated"};
-    
-    if (input_array == nullptr)
-        throw std::runtime_error{"Argument null reference exception"};
+    if(out_array == nullptr){
+        delete[] input_array;
+        return nullptr;
+    }
+
+    if(input_array == nullptr){
+        delete[] out_array;
+        return nullptr;
+    }
     
     for(std::size_t i=0;i < elem_count; i++)
         out_array[i] = input_array[i];
