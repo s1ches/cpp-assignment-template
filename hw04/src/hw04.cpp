@@ -50,7 +50,7 @@ std::size_t* realloc(std::size_t* input_array, const std::size_t elem_count){
         return nullptr;
     }
     
-    for(std::size_t i=0;i < elem_count; i++)
+    for(std::size_t i=0;i < elem_count-1; i++)
         out_array[i] = input_array[i];
     
     delete[] input_array;
