@@ -21,12 +21,8 @@ class MyIntVector{
             if(value == 0) _length = 0;
             else _length = size;
 
-            std::cout<<"start\n";
-            for(int i = 0;i < size; i++){
-                _array[i] = value;
-                std::cout<<_array[i]<<std::endl;
-            }
-            std::cout<<"end\n";
+            for(int i = 0;i < size; i++)
+                _array[i] = value;            
         }
 
         int size(){
@@ -43,11 +39,8 @@ class MyIntVector{
 
             MyIntVector new_vec(size);
 
-            for(int i = 0;i < _length && i < size; i++){
+            for(int i = 0;i < _length && i < size; i++)
                 new_vec.push_back((*this)[i]);
-                std::cout<<new_vec[i]<<std::endl;
-            }
-
 
             for(int i = _length;i < size; i++)
                 new_vec._array[i] = value;
@@ -63,10 +56,12 @@ class MyIntVector{
                 *this = resize((_capacity+1)*2);
             
             _array[_length++] = value;
-            std::cout<<_array[_length-1]<<std::endl;
         }
 
         int operator[](int index){
+            if(index < 0 || index >= _length)
+                throw std::runtime_error{"Index out of range exception"};
+
             return _array[index];
         }   
 
@@ -74,9 +69,9 @@ class MyIntVector{
             return resize(_length);
         }
 
-        ~MyIntVector(){
-            if(!_array)
-            {delete[] _array;
-            _array = nullptr;}
-        }
+    ~MyIntVector(){
+        if(!_array)
+        {delete[] _array;
+        _array = nullptr;}
+    }
 };
