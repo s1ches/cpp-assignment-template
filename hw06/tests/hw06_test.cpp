@@ -65,7 +65,6 @@ TEST(Hw06Tests, Test6)
     MyIntVector vec = MyIntVector(5);
     vec.push_back(1);
     vec = vec.shrink_to_fit();
-    
     EXPECT_EQ(1, vec.capacity());
 }
 
