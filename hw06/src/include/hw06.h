@@ -73,7 +73,7 @@ class MyIntVector{
         }
 
     ~MyIntVector(){
-        if(_array == nullptr){
+        if(_array != nullptr){
             delete[] _array;
             _array = nullptr;
         }
