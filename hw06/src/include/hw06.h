@@ -45,9 +45,11 @@ class MyIntVector{
             for(int i = _length;i < size; i++)
                 new_vec._array[i] = value;
 
-            delete[] _array;
-            _array = nullptr;
-
+            if(_array){
+                delete[] _array;
+                _array = nullptr;
+            }
+            
             return new_vec;
         }
 
@@ -70,7 +72,7 @@ class MyIntVector{
         }
 
     ~MyIntVector(){
-        if(!_array)
+        if(_array)
         {delete[] _array;
         _array = nullptr;}
     }
